@@ -1,0 +1,24 @@
+{
+  "rules": {
+    "queue": {
+      ".read": true,
+      ".write": true
+    },
+    "nextNumbers": {
+      ".read": true,
+      ".write": true
+    },
+    "roomNumbers": {
+      ".read": true,
+      ".write": true
+    },
+    "settings": {
+      ".read": true,
+      ".write": true
+    },
+    "history": {
+      ".read": true,
+      ".write": true
+    }
+  }
+}

@@ -1,0 +1,308 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&display=swap');
+
+
+
+:root {
+  --cream:      #F2E8D9;
+  --cream-dark: #E8D5B7;
+  --cream-deep: #DFC9A3;
+  --burgundy:   #7B1C2C;
+  --burgundy-d: #5A1220;
+  --brown:      #3D1F0D;
+  --brown-mid:  #6B3A1F;
+  --amber:      #C9922A;
+  --amber-l:    #E4B45A;
+  --tan:        #A0714F;
+  --border:     #C4A882;
+  --border-d:   #9E7B52;
+
+  --radius:    8px;
+  --radius-sm: 5px;
+  --radius-lg: 14px;
+
+  --font-display: 'Playfair Display', serif;
+  --font-logo:    'Cinzel Decorative', serif;
+  --font-type:    'Courier Prime', monospace;
+  --font-serif:   'Crimson Pro', serif;
+  --font-body:    'Crimson Pro', serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-body);
+  color: var(--brown);
+  /* Warm paper texture */
+  background-color: var(--cream);
+  background-image:
+    radial-gradient(ellipse at 20% 10%, rgba(201,146,42,0.07) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 90%, rgba(123,28,44,0.05) 0%, transparent 60%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  background-attachment: fixed;
+}
+
+/* Subtle grain overlay */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 9999; pointer-events: none;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px 200px;
+}
+
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: var(--cream-dark); }
+::-webkit-scrollbar-thumb { background: var(--border-d); border-radius: 2px; }
+
+/* ── Card ──────────────────────────────────────── */
+.card {
+  background: var(--cream);
+  border: 1.5px solid var(--border);
+  box-shadow: 3px 3px 0 var(--cream-deep);
+  border-radius: var(--radius);
+}
+
+/* ── Input ─────────────────────────────────────── */
+.input-base {
+  font-family: var(--font-type);
+  background: white;
+  border: 1.5px solid var(--border-d);
+  color: var(--brown);
+  padding: 10px 14px;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  width: 100%;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  border-radius: var(--radius-sm);
+}
+.input-base:focus {
+  border-color: var(--burgundy);
+  box-shadow: 0 0 0 3px rgba(123,28,44,0.08);
+}
+.input-base::placeholder { color: var(--border); }
+
+/* ── Stamp borders ─────────────────────────────── */
+.stamp-border {
+  border: 2px solid var(--brown);
+  box-shadow: 3px 3px 0 var(--brown);
+  border-radius: var(--radius);
+}
+.stamp-border-sm {
+  border: 1.5px solid var(--border-d);
+  box-shadow: 2px 2px 0 var(--border-d);
+  border-radius: var(--radius-sm);
+}
+
+/* ── Button stamp ──────────────────────────────── */
+.btn-stamp {
+  font-family: var(--font-type);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  border: 2px solid currentColor;
+  transition: all 0.1s ease;
+  position: relative;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+.btn-stamp:active { transform: translate(2px, 2px); box-shadow: none !important; }
+.btn-stamp:hover { filter: brightness(1.05); }
+
+/* ── Checkbox ──────────────────────────────────── */
+.check-box {
+  width: 16px; height: 16px;
+  border: 2px solid var(--border-d);
+  display: inline-flex; align-items: center; justify-content: center;
+  flex-shrink: 0; background: white;
+  transition: all 0.15s ease;
+  border-radius: 3px;
+}
+.check-box.checked { background: var(--burgundy); border-color: var(--burgundy); }
+
+/* ── Ticket number ─────────────────────────────── */
+.ticket-number {
+  font-family: 'Courier Prime', monospace;
+  font-weight: 700;
+  color: var(--amber);
+  text-shadow: 2px 2px 0 var(--burgundy-d);
+  line-height: 1;
+}
+
+/* ── Ticket "No." prefix ───────────────────────── */
+.ticket-no::before {
+  content: 'No.';
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.55em;
+  font-weight: 400;
+  color: var(--tan);
+  letter-spacing: 0.1em;
+  display: block;
+  margin-bottom: 1px;
+}
+
+/* ── Perforation ticket ────────────────────────── */
+.ticket-card {
+  position: relative;
+  background: var(--cream-dark);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+.ticket-card::before {
+  content: '';
+  position: absolute; left: 0; right: 0; top: 0; height: 3px;
+  background: repeating-linear-gradient(90deg, var(--burgundy) 0, var(--burgundy) 6px, transparent 6px, transparent 10px);
+  opacity: 0.6;
+}
+.ticket-card::after {
+  content: '';
+  position: absolute; left: 0; right: 0; bottom: 0; height: 3px;
+  background: repeating-linear-gradient(90deg, var(--amber) 0, var(--amber) 6px, transparent 6px, transparent 10px);
+  opacity: 0.4;
+}
+
+/* ── Status badges ─────────────────────────────── */
+.status-badge {
+  font-family: var(--font-type);
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border: 1.5px solid currentColor;
+  border-radius: 3px;
+}
+.status-serving {
+  color: var(--amber);
+  border-color: var(--amber);
+  background: rgba(201,146,42,0.08);
+  transform: rotate(-1.5deg);
+  display: inline-block;
+  font-weight: 700;
+  box-shadow: 1px 1px 0 rgba(201,146,42,0.3);
+}
+.status-pending {
+  color: var(--tan);
+  border-color: var(--tan);
+  background: rgba(160,113,79,0.08);
+}
+.status-waiting {
+  color: var(--brown-mid);
+  border-color: var(--border);
+  background: rgba(196,168,130,0.12);
+}
+.status-next {
+  color: var(--burgundy);
+  border-color: var(--burgundy);
+  background: rgba(123,28,44,0.08);
+  transform: rotate(-1deg);
+  display: inline-block;
+  font-weight: 700;
+}
+
+/* ── Section label ─────────────────────────────── */
+.section-label {
+  font-family: var(--font-type);
+  font-size: 0.62rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--tan);
+}
+
+/* ── Ornamental divider ────────────────────────── */
+.deco-rule {
+  display: flex; align-items: center; gap: 6px;
+  color: var(--amber);
+  font-size: 0.7rem;
+  margin: 14px 0 12px;
+}
+.deco-rule::before, .deco-rule::after {
+  content: ''; flex: 1; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--amber-l), transparent);
+}
+
+/* ── Ornamental divider complex ────────────────── */
+.ornament-divider {
+  display: flex; align-items: center; justify-content: center;
+  gap: 8px; padding: 10px 0;
+  font-family: var(--font-serif);
+  font-size: 0.75rem;
+  color: var(--amber);
+  opacity: 0.7;
+  letter-spacing: 0.2em;
+}
+.ornament-divider::before, .ornament-divider::after {
+  content: ''; flex: 1; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--amber-l) 40%, var(--amber) 50%, var(--amber-l) 60%, transparent);
+}
+
+/* ── Nav active dot ────────────────────────────── */
+.nav-active-dot {
+  position: absolute;
+  top: 4px; left: 50%; transform: translateX(-50%);
+  width: 4px; height: 4px;
+  background: var(--amber);
+  border-radius: 50%;
+}
+
+/* ── Animations ────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-up { animation: fadeUp 0.35s ease forwards; }
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.slide-in { animation: slideIn 0.3s ease forwards; }
+
+@keyframes flashGreen {
+  0%   { background: #d4f0d4; }
+  100% { background: white; }
+}
+.flash-approved { animation: flashGreen 0.6s ease forwards; }
+
+@keyframes pulseAmber {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.55; }
+}
+.pulse-amber { animation: pulseAmber 1.8s ease-in-out infinite; }
+
+@keyframes stampIn {
+  0%   { transform: scale(1.3) rotate(-3deg); opacity: 0; }
+  60%  { transform: scale(0.96) rotate(0.5deg); opacity: 1; }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+.stamp-in { animation: stampIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
+
+/* ── Empty state ───────────────────────────────── */
+.empty-state {
+  position: relative;
+  text-align: center;
+  padding: 40px 20px;
+  overflow: hidden;
+}
+.empty-state-bg {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  pointer-events: none;
+}
+.empty-state-bg span {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 10vw, 6rem);
+  font-style: italic;
+  color: var(--cream-deep);
+  opacity: 0.5;
+  white-space: nowrap;
+  letter-spacing: 0.1em;
+  user-select: none;
+}
+.empty-state-text {
+  position: relative;
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  font-style: italic;
+  color: var(--tan);
+}
