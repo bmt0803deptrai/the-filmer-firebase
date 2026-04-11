@@ -1,7 +1,7 @@
 {
   "name": "the-filmer-functions",
   "version": "1.0.0",
-  "engines": { "node": "22" },
+  "engines": { "node": "20" },
   "main": "lib/index.js",
   "scripts": {
     "build": "tsc",
