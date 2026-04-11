@@ -52,7 +52,6 @@ export const dailyReset = functions
 // ─── Manual reset endpoint (for testing) ─────────────────────
 export const manualReset = functions
   .region('asia-southeast1')
-  .runWith({ secrets: ['RESET_SECRET'] })
   .https.onRequest(async (req, res) => {
     // Simple auth check
     const secret = req.headers['x-reset-secret']
