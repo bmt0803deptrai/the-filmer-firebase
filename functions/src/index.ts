@@ -52,10 +52,11 @@ export const dailyReset = functions
 // ─── Manual reset endpoint (for testing) ─────────────────────
 export const manualReset = functions
   .region('asia-southeast1')
+  .runWith({ secrets: ['RESET_SECRET'] })
   .https.onRequest(async (req, res) => {
     // Simple auth check
     const secret = req.headers['x-reset-secret']
-    if (secret !== functions.config().reset?.secret) {
+    if (secret !== process.env.RESET_SECRET) {
       res.status(401).json({ error: 'Unauthorized' })
       return
     }
